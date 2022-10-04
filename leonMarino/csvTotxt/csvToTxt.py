@@ -1,8 +1,10 @@
+import csv
 from ast import Num
 from codecs import charmap_build
-import csv
+
 import numpy as np
 import pandas as pd
+
 
 def main():
     print("Bienvenido al conversor")
@@ -10,19 +12,69 @@ def main():
     #path = path[1:len(path)-1]
     path = "D:\Drive\Analisis Trabajos - Copy.csv"
     #rows = int(input("Number of rows"))
-    with open(path,"r",newline='',encoding="utf-8") as csvfile:
-        papers = csv.reader(csvfile,dialect="excel")
+    with open(path, "r", newline='', encoding="utf-8") as csvfile:
+        papers = csv.reader(csvfile, dialect="excel")
         for row in papers:
             print(row)
+
+
 class paper:
-    def __init__(self,doi,title,descr,authors,tags):
-        self.doi = doi
-        self.title = title
-        self.descr = descr
-        self.authors = authors
-        self.tags = tags
-    
-    def setAutors(self,authors):  #TODO: implementar formateo correcot #nombre_apellido" ", 
-         authors = name_surname
-    
+    def __init__(self, title, paper):
+        '''	# Titulo
+            ## Autores
+             #Nombre_Apellido
+            ## DOI
+             link
+            ## Descripción abstract
+             lipsum lipus 
+            ## Tags/palabras claves
+             #institucion, #revista, #tema, #lugar 
+        '''
+        paper = dir()
+        self.paper = paper
+        self.title = title,
+
+    def setAuthors(self, author):
+        self.paper["author"] = (author)
+
+    def setDoi(self, doi):
+        self.paper["doi"] = (doi)
+
+    def setDescr(self, description):
+        self.paper["description"] = (description)
+
+    def setTags(self, tags):
+        self.paper["tags"] = (tags)
+
+    def createPaper(self, author, doi, description, tags):
+        self.paper["title"] = (self.title)
+        self.paper.setAuthors(author)
+        self.paper.setDoi(doi)
+        self.paper.setDescr(description)
+        self.paper.setTags(tags)
+
+    def getTxt(self):
+        """Transform the object to string"""
+        paper = self.paper
+        file = ""
+        file += f"# {paper['title']}\n"                     # Titulo
+        file += f"## Authors\n"                             ## Autores
+        for authors in paper["authors"]:        
+            for author in authors: 
+                str(author).replace(" ","_")                #Nombre_Apellido
+                file += f"#{author}"
+        file += f"\n## DOI\n {paper['doi']}\n"              ## DOI + link
+        file += f"## Description\n{paper['description']}\n"   ## Descripción abstract
+        file += f"## Tags\\\Key words\n"
+        for tags in paper["tags"]:        
+            for tag in tags: 
+                str(tag).replace(" ","_")                #tag
+                file += f"#{tag}"                                                 
+        return file
+
+    def writeTxt(self):
+        """Writes the obj as a string"""
+        with open(f"{self.title}.txt" , "w") as f:
+            f.write(self.getTxt())
+        
 main()

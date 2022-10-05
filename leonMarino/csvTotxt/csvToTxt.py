@@ -12,11 +12,6 @@ def main():
     #path = path[1:len(path)-1]
     path = "D:\Drive\Analisis Trabajos - Copy.csv"
     #rows = int(input("Number of rows"))
-    with open(path, "r", newline='', encoding="utf-8") as csvfile:
-        papers = csv.reader(csvfile, dialect="excel")
-        for row in papers:
-            print(row)
-
 
 class paper:
     def __init__(self, title, paper):
@@ -35,6 +30,7 @@ class paper:
         self.title = title,
 
     def setAuthors(self, author):
+        """List of Authors"""
         self.paper["author"] = (author)
 
     def setDoi(self, doi):
@@ -44,6 +40,7 @@ class paper:
         self.paper["description"] = (description)
 
     def setTags(self, tags):
+        """List of tags"""
         self.paper["tags"] = (tags)
 
     def createPaper(self, author, doi, description, tags):
@@ -53,7 +50,7 @@ class paper:
         self.paper.setDescr(description)
         self.paper.setTags(tags)
 
-    def getTxt(self):
+    def paper2string(self):
         """Transform the object to string"""
         paper = self.paper
         file = ""
@@ -64,17 +61,22 @@ class paper:
                 str(author).replace(" ","_")                #Nombre_Apellido
                 file += f"#{author}"
         file += f"\n## DOI\n {paper['doi']}\n"              ## DOI + link
-        file += f"## Description\n{paper['description']}\n"   ## Descripción abstract
+        file += f"## Description\n{paper['description']}\n" ## Descripción abstract
         file += f"## Tags\\\Key words\n"
         for tags in paper["tags"]:        
             for tag in tags: 
-                str(tag).replace(" ","_")                #tag
+                str(tag).replace(" ","_")                   #tag
                 file += f"#{tag}"                                                 
         return file
 
-    def writeTxt(self):
+    def getString(self):
         """Writes the obj as a string"""
         with open(f"{self.title}.txt" , "w") as f:
-            f.write(self.getTxt())
-        
+            f.write(self.paper2string())
+
+    def csv2paper(path):   
+        with open(path, "r", newline='', encoding="utf-8") as csvfile:
+            papers = csv.reader(csvfile, dialect="excel")
+        for row in papers:
+            print(row)        
 main()

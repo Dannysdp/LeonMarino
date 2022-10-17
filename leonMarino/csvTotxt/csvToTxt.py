@@ -2,6 +2,7 @@ import csv
 from paper import paper
 
 def main():
+    #TODO: Console UI
     print("Bienvenido al conversor")
     #path = str(input("File path for reading, remember to have the right formating \n:"))
     #path = path[1:len(path)-1]

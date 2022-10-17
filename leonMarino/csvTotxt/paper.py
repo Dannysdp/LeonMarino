@@ -73,7 +73,7 @@ class paper:
             file += f"#{author}"                            #Nombre_Apellido
         file += f"\n## DOI\n {paper['doi']}\n"              ## DOI + link
         file += f"## Description\n{paper['description']}\n" ## Descripción abstract
-        file += f"## Tags\\\Key words\n"
+        file += f"## Tags\\Key words\n"
         for tag in paper["tags"]:        
             file += f"#{tag}"                                                 
         return file

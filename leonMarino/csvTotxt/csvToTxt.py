@@ -5,7 +5,7 @@ def main():
     print("Bienvenido al conversor")
     #path = str(input("File path for reading, remember to have the right formating \n:"))
     #path = path[1:len(path)-1]
-    path = "D:\Drive\Analisis Trabajos - Copy.csv"
+    path = "D:\\Drive\\Analisis Trabajos - Copy.csv"
     csv2paper(path)
 
     #TODO: separa logica

@@ -1,5 +1,7 @@
 import re
 import os
+
+#--------------------------------------------------------------------
 #functions aux
 #TODO: check excel for title with error and fix regex 
 def clean_text(text):
@@ -23,6 +25,7 @@ def createDir(name):
     if(not os.path.exists(name) and os.path.basename != name):
         os.mkdir(name)
 
+#--------------------------------------------------------------------
 
 class paper:
     def __init__(self,title, author, doi, description, tags):

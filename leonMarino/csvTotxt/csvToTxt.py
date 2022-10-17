@@ -9,7 +9,7 @@ def main():
     path = "D:\\Drive\\Analisis Trabajos - Copy.csv"
     csv2paper(path)
 
-    #TODO: separa logica
+#TODO: separa logica
 def csv2paper(path):
     '''Gets a csv file with papers with that 
     has the same order of col that the class Paper'''   

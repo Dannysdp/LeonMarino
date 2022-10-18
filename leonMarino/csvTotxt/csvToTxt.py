@@ -15,6 +15,7 @@ def csv2paper(path):
     has the same order of col that the class Paper'''   
     with open(path, "r", newline='', encoding="utf-8") as csvfile:
         papers = csv.reader(csvfile, dialect="excel")
+        papers = str(paper)[1:]
         for row in papers:
             for col in row:
                 col = col.strip()

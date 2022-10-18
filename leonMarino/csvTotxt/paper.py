@@ -96,6 +96,6 @@ class paper:
         if(os.path.basename(os.getcwd()) != "files"):
             createDir("files")
             os.chdir("files")
-        with open(f"{txtTitle}.txt" , "w",encoding="utf-8") as f:
+        with open(f"{txtTitle}.md" , "w",encoding="utf-8") as f:
             f.write(self.paper2string())
     

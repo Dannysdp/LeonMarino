@@ -14,8 +14,7 @@ def csv2paper(path):
     '''Gets a csv file with papers with that 
     has the same order of col that the class Paper'''   
     with open(path, "r", newline='', encoding="utf-8") as csvfile:
-        papers = csv.reader(csvfile, dialect="excel")
-        papers = str(paper)[1:]
+        papers = csv.reader(csvfile, dialect="excel",skipinitialspace=True)
         for row in papers:
             for col in row:
                 col = col.strip()

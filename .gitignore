@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.vscode/settings.json
+leonMarino/csvTotxt/royal.jsonc
+.vscode/settings.json
+.vscode/settings.json

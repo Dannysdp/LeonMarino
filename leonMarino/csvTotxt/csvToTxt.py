@@ -2,7 +2,7 @@ import csv
 from paper import paper
 
 def main():
-    path =input()
+    path = input()
     csv2paper(path)
 
 #TODO: separa logica

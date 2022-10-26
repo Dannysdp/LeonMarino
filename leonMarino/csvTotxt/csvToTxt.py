@@ -14,7 +14,7 @@ def csv2paper(path):
         for row in papers:
             for col in row:
                 col = col.strip()
-            newPaper = paper(row[1],row[2],row[0],row[3],row[6])
+            newPaper = paper(row[0],row[1],row[2],row[3],row[4])
             paper.writeFile(newPaper)
 
 main()

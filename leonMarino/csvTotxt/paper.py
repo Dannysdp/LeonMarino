@@ -36,7 +36,7 @@ def createDir(name):
 #--------------------------------------------------------------------
 
 class paper:
-    def __init__(self,title, author, doi, description, tags):
+    def __init__(self,doi, title, author,  description, tags):
         '''	# Titulo
             ## Autores
              #Nombre_Apellido

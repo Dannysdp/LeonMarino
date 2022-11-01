@@ -92,7 +92,7 @@ class paper:
     def writeFile(self):
         """Writes the obj as a string"""
         txtTitle = self.paper["title"]
-        txtTitle = slugify(txtTitle)[0:100]
+        txtTitle = slugify(txtTitle)[0:25]
         if(os.path.basename(os.getcwd()) != "files"):
             createDir("files")
             os.chdir("files")

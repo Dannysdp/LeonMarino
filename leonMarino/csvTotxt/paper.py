@@ -24,6 +24,7 @@ def str2list(text):
     return str.split(text,",")
 
 def prepareText(text):
+    text.replace("&",",")
     text = re.sub(";","_",text)
     text = re.sub("[ .]","",text)
     return text
@@ -71,7 +72,7 @@ class paper:
 
     def setTags(self, tags):
         """List of tags"""
-        tags = prepareText(tags)
+        tags = prepareText(tags).lower()
         self.paper["tags"] = (str2list(tags))
 
     def paper2string(self):

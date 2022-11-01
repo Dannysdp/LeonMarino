@@ -23,11 +23,22 @@ def slugify(value, allow_unicode=False):
 def str2list(text):
     return str.split(text,",")
 
-def prepareText(text):
-    text.replace("&",",")
-    text = re.sub(";","_",text)
-    text = re.sub("[ .]","",text)
-    return text
+def prepareText(listA, onlyLetters = False):
+    newList = list()
+    for text in listA:
+        textClean = text.strip()
+        textClean = textClean.replace("&",",")
+        if onlyLetters:
+            aux = ""
+            for char in textClean:
+                if(not(char.isnumeric()) and char.isalpha() or char == "," or char == "_"):
+                    if(char.isupper() and len(aux) > 1):
+                        aux += "_"
+                    aux += char
+            textClean = aux
+        textClean = re.sub(r"[. ]","_",textClean)
+        newList.append(textClean)
+    return newList
 
 #writeFile aux, creates the dir
 def createDir(name):
@@ -61,13 +72,8 @@ class paper:
         
     def setAuthors(self, author):
         """List of Authors"""
-        author = prepareText(author)
-        authorClean = ""
-        for char in author:
-            if(not char.isnumeric() and char.isalpha()):
-                authorClean += char
-        author = authorClean
-        self.paper["author"] = (str2list(author))
+        authors = prepareText(str2list(author),True)
+        self.paper["author"] = (authors)
 
     def setDoi(self, doi):
         self.paper["doi"] = (doi)
@@ -77,8 +83,8 @@ class paper:
 
     def setTags(self, tags):
         """List of tags"""
-        tags = prepareText(tags).lower()
-        self.paper["tags"] = (str2list(tags))
+        tags = prepareText(str2list(tags.lower()))
+        self.paper["tags"] = (tags)
 
     def paper2string(self):
         """Transform the object to string"""

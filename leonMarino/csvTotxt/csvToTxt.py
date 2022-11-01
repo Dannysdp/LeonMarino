@@ -5,7 +5,6 @@ def main():
     path = input()
     csv2paper(path)
 
-#TODO: separa logica
 def csv2paper(path):
     '''Gets a csv file with papers that 
     has the same order of col that the class Paper

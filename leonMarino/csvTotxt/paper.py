@@ -1,16 +1,24 @@
 import re
 import os
-
+import unicodedata
 #--------------------------------------------------------------------
 #functions aux
 #TODO: check excel for title with error and fix regex 
-def clean_text(text):
-    text = text.lower()
-    text = re.sub("[\\()/]","",text)
-    text = re.sub("[,.:;-]","",text)
-    #text = re.sub("\\d","",text)
-    text = str(text).strip()
-    return text
+def slugify(value, allow_unicode=False):
+    """
+    Taken from https://github.com/django/django/blob/master/django/utils/text.py
+    Convert to ASCII if 'allow_unicode' is False. Convert spaces or repeated
+    dashes to single dashes. Remove characters that aren't alphanumerics,
+    underscores, or hyphens. Convert to lowercase. Also strip leading and
+    trailing whitespace, dashes, and underscores.
+    """
+    value = str(value)
+    if allow_unicode:
+        value = unicodedata.normalize('NFKC', value)
+    else:
+        value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+    value = re.sub(r'[^\w\s-]', '', value.lower())
+    return re.sub(r'[-\s]+', '-', value).strip('-_')
 
 def str2list(text):
     return str.split(text,",")
@@ -28,7 +36,7 @@ def createDir(name):
 #--------------------------------------------------------------------
 
 class paper:
-    def __init__(self,title, author, doi, description, tags):
+    def __init__(self,doi, title, author,  description, tags):
         '''	# Titulo
             ## Autores
              #Nombre_Apellido
@@ -73,21 +81,21 @@ class paper:
         file += f"# {paper['title']}\n"                     # Titulo
         file += f"## Authors\n"                             ## Autores
         for author in paper["author"]:        
-            file += f"#{author}"                            #Nombre_Apellido
+            file += f"#{author} "                            #Nombre_Apellido
         file += f"\n## DOI\n {paper['doi']}\n"              ## DOI + link
         file += f"## Description\n{paper['description']}\n" ## Descripción abstract
-        file += f"## Tags\\Key words\n"
+        file += f"## Tags/Key words\n"
         for tag in paper["tags"]:        
-            file += f"#{tag}"                                                 
+            file += f"#{tag} "                                                 
         return file
 
     def writeFile(self):
         """Writes the obj as a string"""
         txtTitle = self.paper["title"]
-        txtTitle = clean_text(txtTitle)
+        txtTitle = slugify(txtTitle)[0:25]
         if(os.path.basename(os.getcwd()) != "files"):
             createDir("files")
             os.chdir("files")
-        with open(f"{txtTitle}.txt" , "w",encoding="utf-8") as f:
+        with open(f"{txtTitle}.md" , "w",encoding="utf-8") as f:
             f.write(self.paper2string())
     

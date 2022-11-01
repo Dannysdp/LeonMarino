@@ -62,6 +62,11 @@ class paper:
     def setAuthors(self, author):
         """List of Authors"""
         author = prepareText(author)
+        authorClean = ""
+        for char in author:
+            if(not char.isnumeric() and char.isalpha()):
+                authorClean += char
+        author = authorClean
         self.paper["author"] = (str2list(author))
 
     def setDoi(self, doi):

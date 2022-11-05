@@ -93,12 +93,12 @@ class paper:
         file += f"# {paper['title']}\n"                     # Titulo
         file += f"## Authors\n"                             ## Autores
         for author in paper["author"]:        
-            file += f"#{author} "                            #Nombre_Apellido
+            file += f"#{author}, "                            #Nombre_Apellido
         file += f"\n## DOI\n {paper['doi']}\n"              ## DOI + link
         file += f"## Description\n{paper['description']}\n" ## Descripción abstract
         file += f"## Tags/Key words\n"
         for tag in paper["tags"]:        
-            file += f"#{tag} "                                                 
+            file += f"[[{tag}]], "                                                 
         return file
 
     def writeFile(self):

@@ -23,12 +23,16 @@ Yani = []
 
 # Creando el grafico y dandole detalle
 fig, ax = plt.subplots()
-ax.set_xlim(1990,2022) #lim para que la viste empieze "grande"
-ax.set_ylim(0,Yvalues.max())
-ax.grid()
-ax.set_title("Papers publicados con la keywords 'Cyanobacteria, Uruguay'")
+ax.set_xlim(1988,2024) #lim para que la viste empieze "grande"
+ax.set_ylim(0,Yvalues.max()+1)
+ax.grid(alpha=0.5, linestyle="--")
+ax.set_title("Papers publicados con keywords 'Cyanobacteria, Uruguay'")
+
 ax.set_xlabel("Año")
 ax.set_ylabel("Cantidad de papers")
+
+ax.set_xticks([x for x in range(1993,2020) if x % 4 == 0]+[1990,2019,2022]) #ticks cada dos años
+ax.set_xticklabels
 
 def animate(frameNumber):
     """Recorro las lista con los datos y los voy a gregando y graficando uno a uno"""   

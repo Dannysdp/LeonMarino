@@ -1,2 +1,2 @@
 # LeonMarino
-investigación sobre cianobacterias con objectivo de unir los datos y estudios disponibles, para distribuirlos
+Algunas herramientas creadas en python para el proyecto león marino.
